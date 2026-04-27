@@ -25,7 +25,7 @@ nav ul a:hover{color:var(--mint)}
 
 #hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:9rem 2rem 5rem}
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(2,195,154,.1);border:1px solid rgba(2,195,154,.28);border-radius:100px;padding:.35rem 1rem;font-size:.77rem;font-weight:500;color:var(--mint);letter-spacing:.09em;text-transform:uppercase;margin-bottom:2rem;opacity:0;animation:fadeUp .8s .2s forwards}
-.live-dot{width:6px;height:6px;border-radius:50%;background:var(--mint);animation:pulse 2s infinite}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--mint);animation:pulse 2s infinite;display:inline-block}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
 h1{font-family:'DM Serif Display',serif;font-size:clamp(3rem,8vw,6.5rem);line-height:1.06;letter-spacing:-.02em;margin-bottom:1.5rem;opacity:0;animation:fadeUp .9s .35s forwards}
 h1 em{font-style:italic;background:linear-gradient(120deg,var(--seafoam),var(--mint));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -38,6 +38,21 @@ h1 em{font-style:italic;background:linear-gradient(120deg,var(--seafoam),var(--m
 .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.22);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;opacity:0;animation:fadeUp 1s 1.1s forwards}
 .scroll-line{width:1px;height:34px;background:linear-gradient(to bottom,var(--mint),transparent);animation:scrollDrop 2.2s 1.5s infinite}
 @keyframes scrollDrop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* LIVE USAGE TICKER */
+.usage-ticker{position:relative;z-index:1;padding:2rem;border-bottom:1px solid var(--glass-border)}
+.ticker-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.ticker-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:18px;padding:1.5rem 1.8rem;backdrop-filter:blur(20px);display:flex;align-items:center;gap:1.2rem}
+.ticker-icon{width:44px;height:44px;min-width:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.ticker-icon.elec{background:linear-gradient(135deg,rgba(2,128,144,.4),rgba(2,192,154,.2));border:1px solid rgba(2,192,154,.25)}
+.ticker-icon.water{background:linear-gradient(135deg,rgba(30,100,200,.35),rgba(80,160,255,.15));border:1px solid rgba(80,160,255,.25)}
+.ticker-icon.cost{background:linear-gradient(135deg,rgba(200,160,0,.3),rgba(255,200,0,.12));border:1px solid rgba(255,200,0,.25)}
+.ticker-label{font-size:.7rem;color:rgba(255,255,255,.38);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.25rem}
+.ticker-value{font-family:'DM Serif Display',serif;font-size:1.8rem;line-height:1;color:#fff}
+.ticker-value span{font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:400;color:rgba(255,255,255,.45);margin-left:.3rem}
+.ticker-sub{font-size:.72rem;color:rgba(255,255,255,.3);margin-top:.2rem}
+.ticker-change{font-size:.72rem;margin-top:.2rem;font-weight:500}
+.ticker-change.up{color:#ff6b6b}.ticker-change.down{color:var(--mint)}
 
 .stats-strip{position:relative;z-index:1;background:linear-gradient(90deg,rgba(2,128,144,.12),rgba(2,192,154,.07),rgba(2,128,144,.12));border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);padding:2.8rem 2rem}
 .stats-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
@@ -112,11 +127,11 @@ section{position:relative;z-index:1;padding:7rem 2rem}
 .names-count-text{font-size:.82rem;color:rgba(255,255,255,.38)}
 .live-indicator{display:flex;align-items:center;gap:.4rem;font-size:.68rem;color:var(--mint);letter-spacing:.08em;text-transform:uppercase}
 .names-wall{display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center;min-height:60px}
-.name-tag{background:var(--glass);border:1px solid var(--glass-border);border-radius:100px;padding:.42rem .95rem;font-size:.82rem;color:rgba(255,255,255,.65);backdrop-filter:blur(10px);animation:popIn .4s cubic-bezier(.175,.885,.32,1.275) forwards;transition:border-color .3s,color .3s}
+.name-tag{background:var(--glass);border:1px solid var(--glass-border);border-radius:100px;padding:.42rem .95rem;font-size:.82rem;color:rgba(255,255,255,.65);backdrop-filter:blur(10px);animation:popIn .5s cubic-bezier(.175,.885,.32,1.275) forwards;transition:border-color .3s,color .3s}
 .name-tag:hover{border-color:rgba(2,192,154,.38);color:var(--mint)}
-.name-tag.newest{border-color:rgba(2,192,154,.5);color:var(--mint);background:rgba(2,192,154,.09)}
-@keyframes popIn{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
-.sync-status{font-size:.7rem;color:rgba(255,255,255,.28);margin-top:1rem;letter-spacing:.05em;text-align:center}
+.name-tag.newest{border-color:rgba(2,192,154,.55);color:var(--mint);background:rgba(2,192,154,.1)}
+@keyframes popIn{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+.sync-status{font-size:.68rem;color:rgba(255,255,255,.25);margin-top:1rem;letter-spacing:.05em;text-align:center}
 
 footer{position:relative;z-index:1;text-align:center;padding:2.5rem 2rem;border-top:1px solid var(--glass-border);color:rgba(255,255,255,.22);font-size:.77rem;letter-spacing:.05em}
 footer strong{color:var(--mint)}
@@ -126,10 +141,9 @@ footer strong{color:var(--mint)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
 @media(max-width:768px){
-  nav{padding:1rem 1.5rem}
-  nav ul{display:none}
+  nav{padding:1rem 1.5rem}nav ul{display:none}
   .about-grid,.vm-grid,.vp-grid{grid-template-columns:1fr;gap:1.8rem}
-  .steps{grid-template-columns:1fr}
+  .steps,.ticker-inner{grid-template-columns:1fr}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
   .qr-and-form{flex-direction:column}
   .divider-or{flex-direction:row}
@@ -155,8 +169,9 @@ footer strong{color:var(--mint)}
   </ul>
 </nav>
 
+<!-- HERO -->
 <section id="hero">
-  <div class="hero-badge"><div class="live-dot"></div>🌿 UAE Energy Strategy 2050 · Smart Living</div>
+  <div class="hero-badge"><div class="live-dot"></div>&nbsp;🌿 UAE Energy Strategy 2050 · Smart Living</div>
   <h1>Your Energy,<br/><em>Your Numbers.</em></h1>
   <p class="hero-sub">Aware+ is the first per-person energy attribution system for shared residences — turning invisible consumption into individual accountability, and verifiable ESG data for developers.</p>
   <div class="hero-cta">
@@ -166,6 +181,40 @@ footer strong{color:var(--mint)}
   <div class="scroll-hint"><div class="scroll-line"></div>Scroll</div>
 </section>
 
+<!-- LIVE USAGE TICKER -->
+<div class="usage-ticker">
+  <div class="ticker-inner">
+    <div class="ticker-card reveal">
+      <div class="ticker-icon elec">⚡</div>
+      <div>
+        <div class="ticker-label">Electricity · Today</div>
+        <div class="ticker-value" id="kwh-val">3.6<span>kWh</span></div>
+        <div class="ticker-sub" id="kwh-aed">= 9.00 AED</div>
+        <div class="ticker-change up" id="kwh-change">↑ +12% vs yesterday</div>
+      </div>
+    </div>
+    <div class="ticker-card reveal">
+      <div class="ticker-icon water">💧</div>
+      <div>
+        <div class="ticker-label">Water · Today</div>
+        <div class="ticker-value" id="ltr-val">291<span>L</span></div>
+        <div class="ticker-sub" id="ltr-aed">= 2.25 AED</div>
+        <div class="ticker-change down" id="ltr-change">↓ −8% vs yesterday</div>
+      </div>
+    </div>
+    <div class="ticker-card reveal">
+      <div class="ticker-icon cost">💰</div>
+      <div>
+        <div class="ticker-label">Total Cost · Today</div>
+        <div class="ticker-value" id="cost-val">11.25<span>AED</span></div>
+        <div class="ticker-sub">Per resident · real-time</div>
+        <div class="ticker-change down" id="cost-change">↓ Below average. Great job!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS STRIP -->
 <div class="stats-strip">
   <div class="stats-grid">
     <div class="reveal"><div class="strip-num">4×</div><div class="strip-lbl">UAE energy use vs<br/>global average</div></div>
@@ -175,6 +224,7 @@ footer strong{color:var(--mint)}
   </div>
 </div>
 
+<!-- ABOUT -->
 <section id="about">
   <div class="section-inner">
     <p class="section-label reveal">What We Do</p>
@@ -182,7 +232,7 @@ footer strong{color:var(--mint)}
     <div class="about-grid">
       <div class="about-text reveal">
         <p>In shared residential buildings, energy is tracked at the unit level — but never at the individual level. Lights stay on. ACs run all night. No one takes responsibility because no one sees the real cost.</p>
-        <p>Aware+ changes this. Our system identifies each resident through facial recognition and attributes their exact energy and water usage in real time — displayed in Dirhams on smart panels and in the Aware+ mobile app. The result: awareness that actually changes behavior.</p>
+        <p>Aware+ changes this. Our system identifies each resident through facial recognition and attributes their exact energy and water usage in real time — shown in kWh, litres, and Dirhams on smart panels and in the Aware+ mobile app. The result: awareness that actually changes behavior.</p>
         <div class="stat-row">
           <div><div class="stat-num">8–12%</div><div class="stat-label">Higher rental value<br/>for green properties</div></div>
           <div><div class="stat-num">AED 2M</div><div class="stat-label">Max fine for ESG<br/>non-compliance</div></div>
@@ -193,7 +243,7 @@ footer strong{color:var(--mint)}
         <div class="about-card">
           <ul class="feature-list">
             <li><div class="feature-icon">👁️</div><div><strong>Facial Recognition</strong><br/>Frictionless, automatic resident ID — no card, no tap. Just walk in.</div></li>
-            <li><div class="feature-icon">⚡</div><div><strong>Smart Panels</strong><br/>Real-time usage in numbers. When people see money, behavior changes.</div></li>
+            <li><div class="feature-icon">⚡</div><div><strong>Smart Panels</strong><br/>Real-time usage in kWh, litres, and Dirhams. When people see their numbers, behavior changes.</div></li>
             <li><div class="feature-icon">📱</div><div><strong>Mobile App</strong><br/>Personal stats, leaderboard, daily tips, and rewards that build lasting habits.</div></li>
             <li><div class="feature-icon">🔒</div><div><strong>Zero Developer Liability</strong><br/>No video stored. Edge-processed encrypted templates only. Secure IoT throughout.</div></li>
           </ul>
@@ -203,6 +253,7 @@ footer strong{color:var(--mint)}
   </div>
 </section>
 
+<!-- VISION & MISSION -->
 <section id="vision">
   <div class="section-inner">
     <p class="section-label reveal">Our Purpose</p>
@@ -222,6 +273,7 @@ footer strong{color:var(--mint)}
   </div>
 </section>
 
+<!-- HOW IT WORKS -->
 <section id="how">
   <div class="section-inner">
     <p class="section-label reveal">The System</p>
@@ -230,7 +282,7 @@ footer strong{color:var(--mint)}
       <div class="step-card reveal">
         <div class="step-num">01</div>
         <h4>Sense</h4>
-        <p>Facial recognition cameras and smart energy meters identify each resident and measure their individual electricity and water usage in real time across every shared space in the building.</p>
+        <p>Facial recognition cameras and smart energy meters identify each resident and measure their individual electricity (kWh) and water (litres) usage in real time across every shared space.</p>
       </div>
       <div class="step-card reveal">
         <div class="step-num">02</div>
@@ -240,12 +292,13 @@ footer strong{color:var(--mint)}
       <div class="step-card reveal">
         <div class="step-num">03</div>
         <h4>Act</h4>
-        <p>Residents see their usage in Dirhams on in-unit smart panels and in the Aware+ app. A leaderboard, daily tips, and real rewards turn real-time awareness into lasting behavioral change.</p>
+        <p>Residents see kWh, litres, and cost in AED on smart panels and in the app. A leaderboard, daily tips, and real rewards turn real-time awareness into lasting behavioral change.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- VALUE PROPOSITION -->
 <section id="value">
   <div class="section-inner">
     <p class="section-label reveal">Value Proposition</p>
@@ -264,8 +317,8 @@ footer strong{color:var(--mint)}
       <div class="vp-panel reveal">
         <div class="vp-panel-title">🏠 For Residents</div>
         <ul class="vp-list">
-          <li><div class="vp-dot"></div>Personalized energy & water tracking — per person, not per unit</li>
-          <li><div class="vp-dot"></div>Real-time cost visibility in Dirhams, not confusing kilowatts</li>
+          <li><div class="vp-dot"></div>Personalized kWh, litres & AED tracking — per person, not per unit</li>
+          <li><div class="vp-dot"></div>Real-time cost visibility in Dirhams alongside raw consumption data</li>
           <li><div class="vp-dot"></div>Mobile app with instant feedback, daily saving tips, and rewards</li>
           <li><div class="vp-dot"></div>Community leaderboard to make sustainable living social</li>
           <li><div class="vp-dot"></div>Projected 15–30% reduction in personal energy bills</li>
@@ -276,11 +329,12 @@ footer strong{color:var(--mint)}
   </div>
 </section>
 
+<!-- LIVE WITH US -->
 <section id="live">
   <div class="section-inner">
     <p class="section-label reveal">Join the Movement</p>
     <h2 class="section-title reveal">Live with us.</h2>
-    <p class="hero-sub reveal" style="margin:0 auto;">Be part of the first community to live more sustainably. Add your name below — and watch in real time as others join from anywhere in the world.</p>
+    <p class="hero-sub reveal" style="margin:0 auto;">Be part of the first community to live more sustainably. Add your name — and watch in real time as others join from anywhere.</p>
     <div class="live-block">
       <div class="qr-and-form">
         <div class="qr-wrap reveal">
@@ -299,12 +353,12 @@ footer strong{color:var(--mint)}
         <div class="names-header">
           <div class="names-count-num" id="name-count">0</div>
           <div class="names-count-text">people living aware</div>
-          <div class="live-indicator"><div class="live-dot"></div>Live</div>
+          <div class="live-indicator"><div class="live-dot"></div>&nbsp;Live</div>
         </div>
         <div class="names-wall" id="names-wall">
           <div style="color:rgba(255,255,255,.2);font-size:.82rem;margin-top:1rem;">Be the first to join...</div>
         </div>
-        <div class="sync-status" id="sync-status">Connecting to live feed...</div>
+        <div class="sync-status" id="sync-status">Connecting...</div>
       </div>
     </div>
   </div>
@@ -316,7 +370,7 @@ footer strong{color:var(--mint)}
 </footer>
 
 <script>
-// THREE.JS BACKGROUND
+// ── THREE.JS BACKGROUND ──
 const canvas = document.getElementById('bg-canvas');
 const renderer = new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,2));
@@ -336,54 +390,77 @@ for(let i=0;i<5;i++){const m=new THREE.Mesh(new THREE.TorusGeometry(1.1+i*.55,.0
 let mx=0,my=0;
 document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*.45;my=(e.clientY/innerHeight-.5)*.45});
 let tick=0;
-(function animate(){requestAnimationFrame(animate);tick+=.005;pts.rotation.y=tick*.025;pts.rotation.x=Math.sin(tick*.018)*.08;rings.forEach(r=>{r.mesh.rotation.x+=r.sx;r.mesh.rotation.y+=r.sy});camera.position.x+=(mx-camera.position.x)*.025;camera.position.y+=(-my-camera.position.y)*.025;camera.lookAt(scene.position);renderer.render(scene,camera)})();
+(function loop(){requestAnimationFrame(loop);tick+=.005;pts.rotation.y=tick*.025;pts.rotation.x=Math.sin(tick*.018)*.08;rings.forEach(r=>{r.mesh.rotation.x+=r.sx;r.mesh.rotation.y+=r.sy});camera.position.x+=(mx-camera.position.x)*.025;camera.position.y+=(-my-camera.position.y)*.025;camera.lookAt(scene.position);renderer.render(scene,camera)})();
 window.addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 
-// QR CODE
+// ── QR CODE ──
 new QRCode(document.getElementById("qrcode"),{text:location.href,width:158,height:158,colorDark:"#028090",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.H});
 
-// REAL-TIME NAMES via Anthropic API shared storage
-const STORAGE_KEY = "awareplus_names_v2";
+// ── LIVE USAGE TICKER (simulated realistic data) ──
+const baseKwh = 3.6, baseLtr = 291;
+function animateTicker() {
+  const kwhDelta = (Math.random() - 0.48) * 0.08;
+  const ltrDelta = (Math.random() - 0.48) * 4;
+  const kwh = Math.max(2.8, Math.min(5.5, parseFloat(document.getElementById('kwh-val').dataset.val || baseKwh) + kwhDelta));
+  const ltr = Math.max(200, Math.min(400, parseFloat(document.getElementById('ltr-val').dataset.val || baseLtr) + ltrDelta));
+  const kwhAed = (kwh * 2.5).toFixed(2);
+  const ltrAed = (ltr * 0.0077).toFixed(2);
+  const total = (parseFloat(kwhAed) + parseFloat(ltrAed)).toFixed(2);
+
+  const kwhEl = document.getElementById('kwh-val');
+  kwhEl.dataset.val = kwh;
+  kwhEl.innerHTML = kwh.toFixed(1) + '<span>kWh</span>';
+  document.getElementById('kwh-aed').textContent = '= ' + kwhAed + ' AED';
+
+  const ltrEl = document.getElementById('ltr-val');
+  ltrEl.dataset.val = ltr;
+  ltrEl.innerHTML = Math.round(ltr) + '<span>L</span>';
+  document.getElementById('ltr-aed').textContent = '= ' + ltrAed + ' AED';
+
+  document.getElementById('cost-val').innerHTML = total + '<span>AED</span>';
+
+  const avg = 14.5;
+  const costChange = document.getElementById('cost-change');
+  if (parseFloat(total) < avg) {
+    costChange.className = 'ticker-change down';
+    costChange.textContent = '↓ Below average. Great job!';
+  } else {
+    costChange.className = 'ticker-change up';
+    costChange.textContent = '↑ Above average today';
+  }
+}
+setInterval(animateTicker, 3000);
+
+// ── PERSISTENT SHARED NAMES via window.storage ──
+const STORAGE_KEY = 'awareplus_names_v3';
 let names = [];
 let newestName = null;
 
-async function apiCall(prompt) {
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({
-      model: "claude-sonnet-4-20250514",
-      max_tokens: 400,
-      system: `You are a simple key-value store. 
-- To GET: reply with ONLY the JSON array stored at that key, or [] if nothing. No markdown, no text.
-- To SET: store it and reply with only: SAVED`,
-      messages: [{role:"user", content: prompt}]
-    })
-  });
-  const d = await res.json();
-  return d.content?.map(c=>c.text||"").join("").trim();
-}
-
 async function fetchNames() {
   try {
-    const raw = await apiCall(`GET key:"${STORAGE_KEY}"`);
-    const clean = raw.replace(/```json|```/g,"").trim();
-    const parsed = JSON.parse(clean);
-    if (Array.isArray(parsed)) {
-      names = parsed;
-      renderNames();
-      document.getElementById('sync-status').textContent = "Live · last updated " + new Date().toLocaleTimeString();
+    const result = await window.storage.get(STORAGE_KEY, true); // shared=true
+    if (result && result.value) {
+      const parsed = JSON.parse(result.value);
+      if (Array.isArray(parsed)) {
+        names = parsed;
+        renderNames();
+        document.getElementById('sync-status').textContent = '● Live · updated ' + new Date().toLocaleTimeString();
+        return;
+      }
     }
-  } catch(e) {
-    // fallback: localStorage
-    try { names = JSON.parse(localStorage.getItem(STORAGE_KEY)||"[]"); renderNames(); } catch{}
-    document.getElementById('sync-status').textContent = "Offline mode";
-  }
+  } catch(e) {}
+  // key doesn't exist yet — that's fine
+  names = [];
+  renderNames();
+  document.getElementById('sync-status').textContent = '● Ready · be the first to join';
 }
 
 async function pushNames() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(names));
-  try { await apiCall(`SET key:"${STORAGE_KEY}" value:${JSON.stringify(names)}`); } catch(e){}
+  try {
+    await window.storage.set(STORAGE_KEY, JSON.stringify(names), true); // shared=true
+  } catch(e) {
+    console.error('Storage save failed:', e);
+  }
 }
 
 function renderNames() {
@@ -408,31 +485,38 @@ async function submitName() {
   const msg = document.getElementById('success-msg');
   const raw = input.value.trim();
   if (!raw) { input.focus(); return; }
+
   btn.disabled = true;
   btn.textContent = 'Joining...';
+
+  // Pull latest first so we don't overwrite anyone
   await fetchNames();
-  if (!names.includes(raw)) { names.unshift(raw); }
+
+  if (!names.includes(raw)) {
+    names.unshift(raw);
+  }
   newestName = raw;
   await pushNames();
   renderNames();
+
   input.value = '';
   msg.style.display = 'block';
-  setTimeout(()=>msg.style.display='none', 3500);
+  setTimeout(() => msg.style.display = 'none', 3500);
   btn.disabled = false;
   btn.textContent = 'Live With Us →';
 }
 
-document.getElementById('name-input').addEventListener('keydown',e=>{ if(e.key==='Enter') submitName(); });
+document.getElementById('name-input').addEventListener('keydown', e => { if (e.key === 'Enter') submitName(); });
 
-// Load + poll every 7s
+// Load immediately + poll every 6s for real-time feel
 fetchNames();
-setInterval(fetchNames, 7000);
+setInterval(fetchNames, 6000);
 
-// SCROLL REVEAL
-const obs = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)} });
-},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+// ── SCROLL REVEAL ──
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: .1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
