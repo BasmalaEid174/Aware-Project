@@ -39,7 +39,6 @@ h1 em{font-style:italic;background:linear-gradient(120deg,var(--seafoam),var(--m
 .scroll-line{width:1px;height:34px;background:linear-gradient(to bottom,var(--mint),transparent);animation:scrollDrop 2.2s 1.5s infinite}
 @keyframes scrollDrop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
-/* LIVE USAGE TICKER */
 .usage-ticker{position:relative;z-index:1;padding:2rem;border-bottom:1px solid var(--glass-border)}
 .ticker-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
 .ticker-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:18px;padding:1.5rem 1.8rem;backdrop-filter:blur(20px);display:flex;align-items:center;gap:1.2rem}
@@ -169,7 +168,6 @@ footer strong{color:var(--mint)}
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-badge"><div class="live-dot"></div>&nbsp;🌿 UAE Energy Strategy 2050 · Smart Living</div>
   <h1>Your Energy,<br/><em>Your Numbers.</em></h1>
@@ -181,7 +179,6 @@ footer strong{color:var(--mint)}
   <div class="scroll-hint"><div class="scroll-line"></div>Scroll</div>
 </section>
 
-<!-- LIVE USAGE TICKER -->
 <div class="usage-ticker">
   <div class="ticker-inner">
     <div class="ticker-card reveal">
@@ -214,7 +211,6 @@ footer strong{color:var(--mint)}
   </div>
 </div>
 
-<!-- STATS STRIP -->
 <div class="stats-strip">
   <div class="stats-grid">
     <div class="reveal"><div class="strip-num">4×</div><div class="strip-lbl">UAE energy use vs<br/>global average</div></div>
@@ -224,7 +220,6 @@ footer strong{color:var(--mint)}
   </div>
 </div>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="section-inner">
     <p class="section-label reveal">What We Do</p>
@@ -253,7 +248,6 @@ footer strong{color:var(--mint)}
   </div>
 </section>
 
-<!-- VISION & MISSION -->
 <section id="vision">
   <div class="section-inner">
     <p class="section-label reveal">Our Purpose</p>
@@ -273,7 +267,6 @@ footer strong{color:var(--mint)}
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
 <section id="how">
   <div class="section-inner">
     <p class="section-label reveal">The System</p>
@@ -298,7 +291,6 @@ footer strong{color:var(--mint)}
   </div>
 </section>
 
-<!-- VALUE PROPOSITION -->
 <section id="value">
   <div class="section-inner">
     <p class="section-label reveal">Value Proposition</p>
@@ -311,7 +303,6 @@ footer strong{color:var(--mint)}
           <li><div class="vp-dot"></div>Supports LEED and Estidama green building certifications</li>
           <li><div class="vp-dot"></div>Enables ESG compliance with Federal Decree Law No. 11</li>
           <li><div class="vp-dot"></div>Unlocks new revenue through carbon credits</li>
-          <li><div class="vp-dot"></div>3,900 AED per unit · 400 AED/year · ~3-year payback period</li>
         </ul>
       </div>
       <div class="vp-panel reveal">
@@ -329,7 +320,6 @@ footer strong{color:var(--mint)}
   </div>
 </section>
 
-<!-- LIVE WITH US -->
 <section id="live">
   <div class="section-inner">
     <p class="section-label reveal">Join the Movement</p>
@@ -358,7 +348,7 @@ footer strong{color:var(--mint)}
         <div class="names-wall" id="names-wall">
           <div style="color:rgba(255,255,255,.2);font-size:.82rem;margin-top:1rem;">Be the first to join...</div>
         </div>
-        <div class="sync-status" id="sync-status">Connecting...</div>
+        <div class="sync-status" id="sync-status">Connecting to live feed...</div>
       </div>
     </div>
   </div>
@@ -396,71 +386,82 @@ window.addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camer
 // ── QR CODE ──
 new QRCode(document.getElementById("qrcode"),{text:location.href,width:158,height:158,colorDark:"#028090",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.H});
 
-// ── LIVE USAGE TICKER (simulated realistic data) ──
-const baseKwh = 3.6, baseLtr = 291;
+// ── LIVE USAGE TICKER ──
 function animateTicker() {
-  const kwhDelta = (Math.random() - 0.48) * 0.08;
-  const ltrDelta = (Math.random() - 0.48) * 4;
-  const kwh = Math.max(2.8, Math.min(5.5, parseFloat(document.getElementById('kwh-val').dataset.val || baseKwh) + kwhDelta));
-  const ltr = Math.max(200, Math.min(400, parseFloat(document.getElementById('ltr-val').dataset.val || baseLtr) + ltrDelta));
-  const kwhAed = (kwh * 2.5).toFixed(2);
-  const ltrAed = (ltr * 0.0077).toFixed(2);
-  const total = (parseFloat(kwhAed) + parseFloat(ltrAed)).toFixed(2);
-
+  const kwh = Math.max(2.8, Math.min(5.5, parseFloat(document.getElementById('kwh-val').dataset.val || 3.6) + (Math.random()-.48)*.08));
+  const ltr = Math.max(200, Math.min(400, parseFloat(document.getElementById('ltr-val').dataset.val || 291) + (Math.random()-.48)*4));
+  const kwhAed = (kwh*2.5).toFixed(2);
+  const ltrAed = (ltr*0.0077).toFixed(2);
+  const total = (parseFloat(kwhAed)+parseFloat(ltrAed)).toFixed(2);
   const kwhEl = document.getElementById('kwh-val');
   kwhEl.dataset.val = kwh;
-  kwhEl.innerHTML = kwh.toFixed(1) + '<span>kWh</span>';
-  document.getElementById('kwh-aed').textContent = '= ' + kwhAed + ' AED';
-
+  kwhEl.innerHTML = kwh.toFixed(1)+'<span>kWh</span>';
+  document.getElementById('kwh-aed').textContent = '= '+kwhAed+' AED';
   const ltrEl = document.getElementById('ltr-val');
   ltrEl.dataset.val = ltr;
-  ltrEl.innerHTML = Math.round(ltr) + '<span>L</span>';
-  document.getElementById('ltr-aed').textContent = '= ' + ltrAed + ' AED';
-
-  document.getElementById('cost-val').innerHTML = total + '<span>AED</span>';
-
-  const avg = 14.5;
-  const costChange = document.getElementById('cost-change');
-  if (parseFloat(total) < avg) {
-    costChange.className = 'ticker-change down';
-    costChange.textContent = '↓ Below average. Great job!';
-  } else {
-    costChange.className = 'ticker-change up';
-    costChange.textContent = '↑ Above average today';
-  }
+  ltrEl.innerHTML = Math.round(ltr)+'<span>L</span>';
+  document.getElementById('ltr-aed').textContent = '= '+ltrAed+' AED';
+  document.getElementById('cost-val').innerHTML = total+'<span>AED</span>';
+  const cc = document.getElementById('cost-change');
+  if(parseFloat(total)<14.5){cc.className='ticker-change down';cc.textContent='↓ Below average. Great job!';}
+  else{cc.className='ticker-change up';cc.textContent='↑ Above average today';}
 }
 setInterval(animateTicker, 3000);
 
-// ── PERSISTENT SHARED NAMES via window.storage ──
-const STORAGE_KEY = 'awareplus_names_v3';
+// ── GOOGLE SHEETS LIVE DATABASE ──
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzGHHRI0BxTy0hZ_hgYfXkLrmEBrUFUUGMNKlFtVgPoHZ1TzN_rLMqDIPuAanbvQZTr/exec';
 let names = [];
 let newestName = null;
 
 async function fetchNames() {
   try {
-    const result = await window.storage.get(STORAGE_KEY, true); // shared=true
-    if (result && result.value) {
-      const parsed = JSON.parse(result.value);
-      if (Array.isArray(parsed)) {
-        names = parsed;
-        renderNames();
-        document.getElementById('sync-status').textContent = '● Live · updated ' + new Date().toLocaleTimeString();
-        return;
-      }
+    const res = await fetch(SHEET_URL, { method: 'GET' });
+    const data = await res.json();
+    if (Array.isArray(data)) {
+      names = data.filter(n => n && n.trim());
+      renderNames();
+      document.getElementById('sync-status').textContent = '● Live · updated ' + new Date().toLocaleTimeString();
     }
-  } catch(e) {}
-  // key doesn't exist yet — that's fine
-  names = [];
-  renderNames();
-  document.getElementById('sync-status').textContent = '● Ready · be the first to join';
+  } catch(e) {
+    document.getElementById('sync-status').textContent = '● Reconnecting...';
+  }
 }
 
-async function pushNames() {
+async function submitName() {
+  const input = document.getElementById('name-input');
+  const btn = document.getElementById('join-btn');
+  const msg = document.getElementById('success-msg');
+  const raw = input.value.trim();
+  if (!raw) { input.focus(); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Joining...';
+
   try {
-    await window.storage.set(STORAGE_KEY, JSON.stringify(names), true); // shared=true
+    // POST to Google Sheets via no-cors (fire and forget, then re-fetch)
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: raw, time: new Date().toLocaleString() })
+    });
+
+    newestName = raw;
+    input.value = '';
+    msg.style.display = 'block';
+    setTimeout(() => msg.style.display = 'none', 3500);
+
+    // Wait a moment then re-fetch so the new name appears
+    setTimeout(fetchNames, 1200);
+
   } catch(e) {
-    console.error('Storage save failed:', e);
+    msg.textContent = '✕ Something went wrong, try again.';
+    msg.style.display = 'block';
+    setTimeout(() => { msg.style.display = 'none'; msg.textContent = '✓ Welcome to the Aware+ community!'; }, 3000);
   }
+
+  btn.disabled = false;
+  btn.textContent = 'Live With Us →';
 }
 
 function renderNames() {
@@ -479,43 +480,16 @@ function renderNames() {
   });
 }
 
-async function submitName() {
-  const input = document.getElementById('name-input');
-  const btn = document.getElementById('join-btn');
-  const msg = document.getElementById('success-msg');
-  const raw = input.value.trim();
-  if (!raw) { input.focus(); return; }
+document.getElementById('name-input').addEventListener('keydown', e => { if(e.key==='Enter') submitName(); });
 
-  btn.disabled = true;
-  btn.textContent = 'Joining...';
-
-  // Pull latest first so we don't overwrite anyone
-  await fetchNames();
-
-  if (!names.includes(raw)) {
-    names.unshift(raw);
-  }
-  newestName = raw;
-  await pushNames();
-  renderNames();
-
-  input.value = '';
-  msg.style.display = 'block';
-  setTimeout(() => msg.style.display = 'none', 3500);
-  btn.disabled = false;
-  btn.textContent = 'Live With Us →';
-}
-
-document.getElementById('name-input').addEventListener('keydown', e => { if (e.key === 'Enter') submitName(); });
-
-// Load immediately + poll every 6s for real-time feel
+// Load on page open + poll every 5 seconds
 fetchNames();
-setInterval(fetchNames, 6000);
+setInterval(fetchNames, 5000);
 
 // ── SCROLL REVEAL ──
 const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-}, { threshold: .1, rootMargin: '0px 0px -50px 0px' });
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);} });
+}, {threshold:.1, rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
